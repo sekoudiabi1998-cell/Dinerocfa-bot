@@ -1,16 +1,16 @@
 import asyncio
+import os
 from datetime import datetime, timedelta
 import random
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 
 # --- CONFIG DINERO BOT - SEKOU ---
-BOT_TOKEN = 9260749069:AAHHdtbY29rRgsvn87f14ikxoyvMlkhlzqg
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 PROMO_CODE = "DINERO06"
 LIEN_1WIN = "https://1win.ci/betting?p=unoe&sharebet=DINERO06"
-ADMIN_ID = 6312211592  # Ton ID perso - DIABI SEKOU
+ADMIN_ID = 6312211592
 verified_users = set()
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = (
         f"👋 Salut ! Bienvenue sur **DINERO BOT** 🔥\n\n"
