@@ -5,7 +5,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 TOKEN = os.getenv("BOT_TOKEN")
 WEBAPP_URL = "https://dinerocfa-bot.onrender.com"
-LINK_1WIN = "https://1wpt.com"  # <-- mets ton lien d'affiliation 1Win ici
+LINK_1WIN = https://1win.ci/betting?p=unoe&sharebet=DINERO06
 
 flask_app = Flask(__name__)
 @flask_app.route('/')
