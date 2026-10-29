@@ -20,7 +20,7 @@ import random
 
 TOKEN = os.getenv("BOT_TOKEN")
 PROMO = "DINEROCFA225"
-LINK = f"https://1wprxx.com/?open=register&p=ik6q&promo={PROMO}"
+LINK = "https://1win.com/?promo=DINEROCFA225"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
