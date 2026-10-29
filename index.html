@@ -1,63 +1,39 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dinero-Multi-Games</title><script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b0e25;color:#fff;font-family:-apple-system,BlinkMacSystemFont,Arial}
-.top{padding:16px;background:#101330;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1c2050}
+*{box-sizing:border-box}body{margin:0;background:#0b0e25;color:#fff;font-family:Arial}
+.top{padding:16px;background:#101330;display:flex;justify-content:space-between;align-items:center}
 .cardProg{margin:14px;background:#15193a;border:1px solid #222760;border-radius:18px;padding:16px}
-.progHead{display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;color:#8a90b8}
-.amount{font-size:36px;font-weight:800;margin:8px 0}.amount span{font-size:18px;color:#8a90b8}
 .bar{height:8px;background:#1e2350;border-radius:10px;overflow:hidden}.fill{height:100%;background:#00e5a0;width:100%}
-.barFoot{display:flex;justify-content:space-between;font-size:12px;margin-top:8px;color:#8a90b8}.active{color:#00e5a0;font-weight:bold}
-.access{margin:14px;background:#15193a;border:1px solid #222760;border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center}
-.check{width:32px;height:32px;background:#123524;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#00e5a0}
-.section{padding:0 14px;display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
-.game{background:#15193a;border:1px solid #222760;border-radius:18px;overflow:hidden;position:relative}
+.game{background:#15193a;border-radius:18px;overflow:hidden;border:1px solid #222760;position:relative}
 .badge{position:absolute;top:8px;left:8px;background:#00e5a0;color:#000;font-size:9px;font-weight:800;padding:4px 8px;border-radius:6px}
 .gImg{height:140px;background:linear-gradient(135deg,#2a2f7a,#6a3df0);display:flex;align-items:center;justify-content:center;font-size:40px}
-.gName{padding:10px 12px 14px 12px}.gName b{display:block}.sig{color:#00e5a0;font-size:12px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#101330;border-top:1px solid #1c2050;display:flex;justify-content:space-around;padding:10px 0}
-.nav div{text-align:center;font-size:11px;color:#6a7098}.nav .on{color:#00e5a0}
-#gamePage{display:none;position:fixed;inset:0;background:#0b0e25;z-index:20;overflow:auto}
-.gTop{padding:12px;background:#101330;display:flex;justify-content:space-between;align-items:center}
-.signalBox{margin:14px;background:#15193a;border-radius:18px;padding:14px}
-.preview{height:220px;background:#0f1230;border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#gamePage{display:none;position:fixed;inset:0;background:#0b0e25;z-index:20}
+.gTop{padding:12px;background:#101330;display:flex;justify-content:space-between}
+.preview{height:220px;background:#0f1230;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:14px;font-size:50px}
 .btnPred{width:160px;margin:16px auto;display:block;background:linear-gradient(90deg,#ff3b5c,#ff6ad5);border:0;color:#fff;font-weight:800;padding:14px;border-radius:12px}
-.resBox{margin-top:14px;background:#0f1230;border-radius:14px;padding:14px}
-.row{display:flex;justify-content:space-between;margin:8px 0;font-size:14px}
+.resBox{margin:14px;background:#15193a;border-radius:14px;padding:14px}
+.row{display:flex;justify-content:space-between;margin:8px 0}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#101330;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1c2050}
 </style></head><body>
-<div class="top"><b>Dinero-Multi-Games</b><small style="background:#ffcc4d;color:#000;padding:6px 10px;border-radius:20px;font-weight:800">MA</small></div>
-<div style="padding:0 14px"><small style="color:#8a90b8">Signaux 1Win • Code DINERO06</small></div>
-
-<div class="cardProg">
-<div class="progHead"><span>PROGRESSION DU DÉPÔT</span><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px">🔓 Débloqué</span></div>
-<div class="amount">$1.41 <span>/ $1</span></div>
-<div class="bar"><div class="fill"></div></div>
-<div class="barFoot"><span>100%</span><span class="active">Signaux actifs</span></div>
-</div>
-
-<div class="access"><div class="check">✓</div><div><b>Accès complet activé</b><br><small style="color:#8a90b8">Ouvrez un jeu et appuyez sur PRÉDICTION pour recevoir votre signal.</small></div></div>
-
-<div class="section"><b>Jeux</b><small style="color:#8a90b8">15 jeux</small></div>
+<div class="top"><b>Dinero-Multi-Games</b><span style="background:#ffcc4d;color:#000;padding:6px 10px;border-radius:20px;font-weight:800">MA</span></div>
+<div class="cardProg"><div style="display:flex;justify-content:space-between;font-size:11px;color:#8a90b8"><span>PROGRESSION DU DÉPÔT</span><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px">🔓 Débloqué</span></div><div style="font-size:36px;font-weight:800;margin:8px 0">$1.41 <span style="font-size:18px;color:#8a90b8">/ $1</span></div><div class="bar"><div class="fill"></div></div></div>
 <div class="grid" id="grid"></div>
-
-<div style="height:70px"></div>
-<div class="nav"><div class="on">🎮<br>Jeux</div><div>🏆<br>Classement</div><div>👤<br>Profil</div><div>⚙️<br>Réglages</div></div>
+<div style="height:70px"></div><div class="nav"><div style="color:#00e5a0">🎮<br>Jeux</div><div>🏆<br>Classement</div><div>👤<br>Profil</div><div>⚙️<br>Réglages</div></div>
 
 <div id="gamePage">
 <div class="gTop"><button onclick="closeGame()" style="background:0;border:0;color:#8ab4ff">‹ Retour</button><b id="gTitle">LUCKY JET</b><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px">🔓 Signaux actifs</span></div>
-<div class="signalBox">
-<div class="preview" id="preview">🎰</div>
+<div class="preview" id="preview">👨‍🚀</div>
 <button class="btnPred" onclick="doPredict()">PRÉDICTION</button>
 <div id="res" style="display:none" class="resBox">
-<b style="display:block;text-align:center;margin-bottom:12px">🎯 Signal Calculé</b>
-<div class="row"><span>Multiplicateur</span><b id="rMult" style="color:#00e5a0">x2.39</b></div>
-<div class="row"><span>Assurance (cashout)</span><b id="rAss" style="color:#ffcc4d">x1.20</b></div>
-<div class="row"><span>Heure du signal</span><b id="rHeure">19h17</b></div>
-<div class="row"><span>Confiance</span><b id="rConf">82%</b></div>
+<b style="display:block;text-align:center">🎯 Signal Calculé</b>
+<div class="row"><span>Multiplicateur</span><b id="rMult" style="color:#00e5a0">x1.63</b></div>
+<div class="row"><span>Assurance (cashout)</span><b id="rAss" style="color:#ffcc4d">x1.10</b></div>
+<div class="row"><span>Heure du signal</span><b id="rHeure">21h24</b></div>
+<div class="row"><span>Confiance</span><b id="rConf">87%</b></div>
 <div style="text-align:center;margin-top:12px;color:#00e5a0;font-weight:bold">✅ Bonne opportunité !</div>
 <a href="https://1win.ci/betting?p=unoe&sharebet=DINERO06" target="_blank" style="display:block;text-align:center;margin-top:14px;background:#1a1f4a;color:#8a90b8;padding:12px;border-radius:10px;text-decoration:none;font-size:12px">Jouer sur 1Win avec DINERO06</a>
-</div>
 </div>
 </div>
 
@@ -67,7 +43,7 @@ const games=[{n:"AVIATRIX",e:"✈️"},{n:"TO THE MOON",e:"🚀"},{n:"AVIATOR",e
 const grid=document.getElementById('grid');
 games.forEach(g=>{
 let d=document.createElement('div');d.className='game';
-d.innerHTML=`<span class="badge">NOUVEAU</span><div class="gImg">${g.e}</div><div class="gName"><b>${g.n}</b><span class="sig">⚡ Signal prêt</span></div>`;
+d.innerHTML=`<span class="badge">NOUVEAU</span><div class="gImg">${g.e}</div><div style="padding:10px"><b>${g.n}</b><br><small style="color:#00e5a0">⚡ Signal prêt</small></div>`;
 d.onclick=()=>openGame(g.n,g.e);grid.appendChild(d);
 });
 function openGame(name,emoji){
@@ -78,10 +54,12 @@ document.getElementById('gamePage').style.display='block';
 }
 function closeGame(){document.getElementById('gamePage').style.display='none';}
 function doPredict(){
-let m=(Math.random()*4+1.2).toFixed(2);
-let a=(m*0.6).toFixed(2);
-let h=new Date().getHours()+'h'+String(new Date().getMinutes()).padStart(2,'0');
-let c=Math.floor(Math.random()*18+78);
+let now = new Date();
+now.setMinutes(now.getMinutes() + 3);
+let m=(Math.random()*5+1.10).toFixed(2);
+let a=(m*0.68).toFixed(2);
+let h=now.getHours()+'h'+String(now.getMinutes()).padStart(2,'0');
+let c=Math.floor(Math.random()*15+78);
 document.getElementById('rMult').innerText='x'+m;
 document.getElementById('rAss').innerText='x'+a;
 document.getElementById('rHeure').innerText=h;
