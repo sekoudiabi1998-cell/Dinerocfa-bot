@@ -1,34 +1,60 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dinero CFA Predictor</title><script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dinero CFA Predictor</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b0e25;color:#fff;font-family:Arial}
-.top{padding:16px;background:#101330;display:flex;justify-content:space-between}
+.top{padding:16px;background:#101330;display:flex;justify-content:space-between;align-items:center}
 .cardProg{margin:14px;background:#15193a;border:1px solid #222760;border-radius:18px;padding:16px}
-.bar{height:8px;background:#1e2350;border-radius:10px;overflow:hidden}.fill{height:100%;background:#00e5a0;width:100%}
+.bar{height:10px;background:#1e2350;border-radius:10px;overflow:hidden;margin-top:10px}
+.fill{height:100%;background:#00e5a0;width:100%}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
 .game{background:#15193a;border-radius:18px;overflow:hidden;border:1px solid #222760;position:relative}
-.badge{position:absolute;top:8px;left:8px;background:#00e5a0;color:#000;font-size:9px;font-weight:800;padding:4px 8px;border-radius:6px}
-.gImg{height:140px;background:linear-gradient(135deg,#2a2f7a,#6a3df0);display:flex;align-items:center;justify-content:center;font-size:40px}
+.badge{position:absolute;top:8px;left:8px;background:#00e5a0;color:#000;font-size:9px;font-weight:800;padding:4px 8px;border-radius:6px;z-index:2}
+.gImg{height:150px;background:linear-gradient(135deg,#2a2f7a,#6a3df0);display:flex;align-items:center;justify-content:center;font-size:42px}
 #gamePage{display:none;position:fixed;inset:0;background:#0b0e25;z-index:20;overflow-y:auto}
 .gTop{padding:12px;background:#101330;display:flex;justify-content:space-between;align-items:center}
-.preview{height:300px;margin:14px;border-radius:16px;background:radial-gradient(circle at center,#3a2a7a,#0b0e25);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.preview{height:320px;margin:14px;border-radius:16px;background:#0f1230;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
 .preview img{width:100%;height:100%;object-fit:cover}
-.btnPred{width:200px;margin:16px auto;display:block;background:linear-gradient(90deg,#ff3b5c,#ff6ad5);border:0;color:#fff;font-weight:800;padding:14px;border-radius:12px;font-size:16px}
-.loadingBox{margin:14px;background:#15193a;border-radius:12px;padding:18px;text-align:center;display:none;font-weight:700}
+.btnPred{width:200px;margin:16px auto;display:block;background:linear-gradient(90deg,#ff3b5c,#ff6ad5);border:0;color:#fff;font-weight:800;padding:14px;border-radius:12px;font-size:15px}
+.loadingBox{margin:14px;background:#15193a;border-radius:12px;padding:18px;text-align:center;display:none;font-weight:700;color:#ffcc4d}
 .resBox{margin:14px;background:#15193a;border-radius:14px;padding:14px;display:none}
 .row{display:flex;justify-content:space-between;margin:10px 0}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#101330;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1c2050}
-.dot{animation:blink 1s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-</style></head><body>
+</style>
+</head>
+<body>
+
 <div class="top"><b>Dinero CFA Predictor</b><span style="background:#ffcc4d;color:#000;padding:6px 10px;border-radius:20px;font-weight:800">MA</span></div>
-<div class="cardProg"><div style="display:flex;justify-content:space-between;font-size:11px;color:#8a90b8"><span>PROGRESSION DU DÉPÔT</span><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px">🔓 Débloqué</span></div><div style="font-size:36px;font-weight:800;margin:8px 0">$1.41 <span style="font-size:18px;color:#8a90b8">/ $1</span></div><div class="bar"><div class="fill"></div></div></div>
-<div class="grid" id="grid"></div><div style="height:80px"></div><div class="nav"><div style="color:#00e5a0">🎮<br>Jeux</div><div>🏆<br>Classement</div><div>👤<br>Profil</div><div>⚙️<br>Réglages</div></div>
+
+<div class="cardProg">
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#8a90b8">
+<span>PROGRESSION DU DÉPÔT</span><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px">🔓 Débloqué</span>
+</div>
+<div style="font-size:36px;font-weight:800;margin:8px 0">$1.41 <span style="font-size:18px;color:#8a90b8">/ $1</span></div>
+<div class="bar"><div class="fill"></div></div>
+<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#8a90b8"><span>100%</span><span>Signaux actifs</span></div>
+</div>
+
+<div style="margin:14px;background:#15193a;border-radius:14px;padding:14px;border:1px solid #222760;display:flex;gap:12px">
+<div style="width:28px;height:28px;background:#123524;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#00e5a0">✓</div>
+<div><b style="font-size:13px">Accès complet activé</b><br><small style="color:#8a90b8">Ouvrez un jeu et appuyez sur PRÉDICTION pour recevoir votre signal.</small></div>
+</div>
+
+<div style="padding:0 14px;display:flex;justify-content:space-between"><b>Jeux</b><small style="color:#8a90b8">15 jeux</small></div>
+<div class="grid" id="grid"></div>
+<div style="height:80px"></div>
+
+<div class="nav"><div style="color:#00e5a0;text-align:center">🎮<br><small>Jeux</small></div><div style="text-align:center;color:#8a90b8">🏆<br><small>Classement</small></div><div style="text-align:center;color:#8a90b8">👤<br><small>Profil</small></div><div style="text-align:center;color:#8a90b8">⚙️<br><small>Réglages</small></div></div>
 
 <div id="gamePage">
-<div class="gTop"><button onclick="closeGame()" style="background:#1a1f4a;border:0;color:#8ab4ff;padding:6px 10px;border-radius:8px">‹ Retour</button><b id="gTitle">LUCKY JET</b><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px">🔓 Signaux actifs</span></div>
+<div class="gTop"><button onclick="closeGame()" style="background:#1a1f4a;border:0;color:#8ab4ff;padding:6px 12px;border-radius:8px">‹ Retour</button><b id="gTitle">LUCKY JET</b><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px">🔒 Signaux actifs</span></div>
 <div class="preview" id="preview">👨‍🚀</div>
 <button class="btnPred" id="btnPred" onclick="doPredict()">PRÉDICTION</button>
-<div id="loading" class="loadingBox">⏳ Analyse en cours<span class="dot">...</span></div>
+<div id="loading" class="loadingBox">⏳ Analyse en cours...</div>
 <div id="res" class="resBox">
 <b style="display:block;text-align:center">🎯 Signal Calculé</b>
 <div class="row"><span>Multiplicateur</span><b id="rMult" style="color:#00e5a0">x1.63</b></div>
@@ -42,22 +68,33 @@
 
 <script>
 Telegram.WebApp.expand();
-const games=[{n:"AVIATRIX",e:"✈️"},{n:"TO THE MOON",e:"🚀"},{n:"AVIATOR",e:"🛩️"},{n:"LUCKY JET",e:"👨‍🚀"},{n:"MINES",e:"💣"},{n:"SPEED N CASH",e:"🏎️"},{n:"CRASH",e:"📉"},{n:"ROYAL MINES",e:"👑"},{n:"BOMBUCKS",e:"💥"},{n:"COIN FLIP",e:"🪙"},{n:"PENALTY",e:"⚽"},{n:"MINES 2",e:"💎"},{n:"LUCKY JET",e:"🚀"},{n:"AVIATOR",e:"✈️"},{n:"JETX",e:"🛰️"}];
+const games=[
+{n:"AVIATRIX",e:"✈️",c:"#3a5bff"},{n:"TO THE MOON",e:"🚀",c:"#5a3bff"},{n:"AVIATOR",e:"🛩️",c:"#ff3b5c"},{n:"LUCKY JET",e:"👨‍🚀",c:"#6a3df0"},
+{n:"MINES",e:"💣",c:"#2a7a5a"},{n:"SPEED N CASH",e:"🏎️",c:"#ff7a3b"},{n:"CRASH",e:"📉",c:"#3bff7a"},{n:"ROYAL MINES",e:"👑",c:"#7a3bff"},
+{n:"BOMBUCKS",e:"💥",c:"#ff3b7a"},{n:"COIN FLIP",e:"🪙",c:"#ffcc4d"},{n:"PENALTY",e:"⚽",c:"#4dff88"},{n:"MINES 2",e:"💎",c:"#4d88ff"},
+{n:"LUCKY JET 2",e:"🚀",c:"#8a3dff"},{n:"AVIATOR 2",e:"✈️",c:"#ff3b3b"},{n:"JETX",e:"🛰️",c:"#3bffcc"}
+];
 const grid=document.getElementById('grid');
 games.forEach(g=>{
 let d=document.createElement('div');d.className='game';
-d.innerHTML=`<span class="badge">NOUVEAU</span><div class="gImg">${g.e}</div><div style="padding:10px"><b>${g.n}</b><br><small style="color:#00e5a0">⚡ Signal prêt</small></div>`;
+d.innerHTML=`<span class="badge">NOUVEAU</span><div class="gImg" style="background:linear-gradient(135deg,${g.c},#0b0e25)">${g.e}</div><div style="padding:10px"><b style="font-size:12px">${g.n}</b><br><small style="color:#00e5a0">⚡ Signal prêt</small></div>`;
 d.onclick=()=>openGame(g.n,g.e);grid.appendChild(d);
 });
+
 function openGame(name,emoji){
 document.getElementById('gTitle').innerText=name;
-document.getElementById('preview').innerHTML=emoji;
-if(name.includes("LUCKY JET")){document.getElementById('preview').innerHTML='<img src="https://i.ibb.co/6yQhZ3x/luckyjet-joe.png" onerror="this.parentNode.innerHTML=`👨‍🚀`">';}
+let pv=document.getElementById('preview');
+if(name.includes("LUCKY JET")){
+pv.innerHTML='<img src="./luckyjet.png" onerror="this.outerHTML=`<div style=font-size:80px>👨‍🚀</div>`">';
+}else{
+pv.innerHTML=`<div style="font-size:80px">${emoji}</div>`;
+}
 document.getElementById('res').style.display='none';
 document.getElementById('loading').style.display='none';
 document.getElementById('gamePage').style.display='block';
 }
 function closeGame(){document.getElementById('gamePage').style.display='none';}
+
 function doPredict(){
 const btn=document.getElementById('btnPred');
 const loading=document.getElementById('loading');
@@ -65,6 +102,7 @@ const res=document.getElementById('res');
 btn.disabled=true;btn.style.opacity="0.5";
 res.style.display='none';
 loading.style.display='block';
+loading.innerText='⏳ Analyse en cours...';
 setTimeout(()=>{
 let now=new Date();now.setMinutes(now.getMinutes()+3);
 let m=(Math.random()*5+1.10).toFixed(2);
@@ -81,4 +119,5 @@ btn.disabled=false;btn.style.opacity="1";
 },2500);
 }
 </script>
-</body></html>
+</body>
+</html>
