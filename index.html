@@ -1,32 +1,35 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dinero-Multi-Games</title><script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Dinero CFA Predictor</title><script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b0e25;color:#fff;font-family:Arial}
-.top{padding:16px;background:#101330;display:flex;justify-content:space-between;align-items:center}
+.top{padding:16px;background:#101330;display:flex;justify-content:space-between}
 .cardProg{margin:14px;background:#15193a;border:1px solid #222760;border-radius:18px;padding:16px}
 .bar{height:8px;background:#1e2350;border-radius:10px;overflow:hidden}.fill{height:100%;background:#00e5a0;width:100%}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
 .game{background:#15193a;border-radius:18px;overflow:hidden;border:1px solid #222760;position:relative}
 .badge{position:absolute;top:8px;left:8px;background:#00e5a0;color:#000;font-size:9px;font-weight:800;padding:4px 8px;border-radius:6px}
 .gImg{height:140px;background:linear-gradient(135deg,#2a2f7a,#6a3df0);display:flex;align-items:center;justify-content:center;font-size:40px}
-#gamePage{display:none;position:fixed;inset:0;background:#0b0e25;z-index:20}
-.gTop{padding:12px;background:#101330;display:flex;justify-content:space-between}
-.preview{height:220px;background:#0f1230;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:14px;font-size:50px}
-.btnPred{width:160px;margin:16px auto;display:block;background:linear-gradient(90deg,#ff3b5c,#ff6ad5);border:0;color:#fff;font-weight:800;padding:14px;border-radius:12px}
-.resBox{margin:14px;background:#15193a;border-radius:14px;padding:14px}
-.row{display:flex;justify-content:space-between;margin:8px 0}
+#gamePage{display:none;position:fixed;inset:0;background:#0b0e25;z-index:20;overflow-y:auto}
+.gTop{padding:12px;background:#101330;display:flex;justify-content:space-between;align-items:center}
+.preview{height:300px;margin:14px;border-radius:16px;background:radial-gradient(circle at center,#3a2a7a,#0b0e25);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.preview img{width:100%;height:100%;object-fit:cover}
+.btnPred{width:200px;margin:16px auto;display:block;background:linear-gradient(90deg,#ff3b5c,#ff6ad5);border:0;color:#fff;font-weight:800;padding:14px;border-radius:12px;font-size:16px}
+.loadingBox{margin:14px;background:#15193a;border-radius:12px;padding:18px;text-align:center;display:none;font-weight:700}
+.resBox{margin:14px;background:#15193a;border-radius:14px;padding:14px;display:none}
+.row{display:flex;justify-content:space-between;margin:10px 0}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#101330;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1c2050}
+.dot{animation:blink 1s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
 </style></head><body>
-<div class="top"><b>Dinero-Multi-Games</b><span style="background:#ffcc4d;color:#000;padding:6px 10px;border-radius:20px;font-weight:800">MA</span></div>
+<div class="top"><b>Dinero CFA Predictor</b><span style="background:#ffcc4d;color:#000;padding:6px 10px;border-radius:20px;font-weight:800">MA</span></div>
 <div class="cardProg"><div style="display:flex;justify-content:space-between;font-size:11px;color:#8a90b8"><span>PROGRESSION DU DÉPÔT</span><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px">🔓 Débloqué</span></div><div style="font-size:36px;font-weight:800;margin:8px 0">$1.41 <span style="font-size:18px;color:#8a90b8">/ $1</span></div><div class="bar"><div class="fill"></div></div></div>
-<div class="grid" id="grid"></div>
-<div style="height:70px"></div><div class="nav"><div style="color:#00e5a0">🎮<br>Jeux</div><div>🏆<br>Classement</div><div>👤<br>Profil</div><div>⚙️<br>Réglages</div></div>
+<div class="grid" id="grid"></div><div style="height:80px"></div><div class="nav"><div style="color:#00e5a0">🎮<br>Jeux</div><div>🏆<br>Classement</div><div>👤<br>Profil</div><div>⚙️<br>Réglages</div></div>
 
 <div id="gamePage">
-<div class="gTop"><button onclick="closeGame()" style="background:0;border:0;color:#8ab4ff">‹ Retour</button><b id="gTitle">LUCKY JET</b><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px">🔓 Signaux actifs</span></div>
+<div class="gTop"><button onclick="closeGame()" style="background:#1a1f4a;border:0;color:#8ab4ff;padding:6px 10px;border-radius:8px">‹ Retour</button><b id="gTitle">LUCKY JET</b><span style="background:#123524;color:#00e5a0;padding:4px 10px;border-radius:20px;font-size:11px">🔓 Signaux actifs</span></div>
 <div class="preview" id="preview">👨‍🚀</div>
-<button class="btnPred" onclick="doPredict()">PRÉDICTION</button>
-<div id="res" style="display:none" class="resBox">
+<button class="btnPred" id="btnPred" onclick="doPredict()">PRÉDICTION</button>
+<div id="loading" class="loadingBox">⏳ Analyse en cours<span class="dot">...</span></div>
+<div id="res" class="resBox">
 <b style="display:block;text-align:center">🎯 Signal Calculé</b>
 <div class="row"><span>Multiplicateur</span><b id="rMult" style="color:#00e5a0">x1.63</b></div>
 <div class="row"><span>Assurance (cashout)</span><b id="rAss" style="color:#ffcc4d">x1.10</b></div>
@@ -39,7 +42,7 @@
 
 <script>
 Telegram.WebApp.expand();
-const games=[{n:"AVIATRIX",e:"✈️"},{n:"TO THE MOON",e:"🚀"},{n:"AVIATOR",e:"🛩️"},{n:"LUCKY JET",e:"👨‍🚀"},{n:"MINES",e:"💣"},{n:"SPEED N CASH",e:"🏎️"},{n:"CRASH",e:"📉"},{n:"ROYAL MINES",e:"👑"},{n:"BOMBUCKS",e:"💥"},{n:"COIN FLIP",e:"🪙"},{n:"PENALTY",e:"⚽"},{n:"MINES 2",e:"💎"},{n:"LUCKY JET 2",e:"🚀"},{n:"AVIATOR 2",e:"✈️"},{n:"JETX",e:"🛰️"}];
+const games=[{n:"AVIATRIX",e:"✈️"},{n:"TO THE MOON",e:"🚀"},{n:"AVIATOR",e:"🛩️"},{n:"LUCKY JET",e:"👨‍🚀"},{n:"MINES",e:"💣"},{n:"SPEED N CASH",e:"🏎️"},{n:"CRASH",e:"📉"},{n:"ROYAL MINES",e:"👑"},{n:"BOMBUCKS",e:"💥"},{n:"COIN FLIP",e:"🪙"},{n:"PENALTY",e:"⚽"},{n:"MINES 2",e:"💎"},{n:"LUCKY JET",e:"🚀"},{n:"AVIATOR",e:"✈️"},{n:"JETX",e:"🛰️"}];
 const grid=document.getElementById('grid');
 games.forEach(g=>{
 let d=document.createElement('div');d.className='game';
@@ -48,14 +51,22 @@ d.onclick=()=>openGame(g.n,g.e);grid.appendChild(d);
 });
 function openGame(name,emoji){
 document.getElementById('gTitle').innerText=name;
-document.getElementById('preview').innerText=emoji;
+document.getElementById('preview').innerHTML=emoji;
+if(name.includes("LUCKY JET")){document.getElementById('preview').innerHTML='<img src="https://i.ibb.co/6yQhZ3x/luckyjet-joe.png" onerror="this.parentNode.innerHTML=`👨‍🚀`">';}
 document.getElementById('res').style.display='none';
+document.getElementById('loading').style.display='none';
 document.getElementById('gamePage').style.display='block';
 }
 function closeGame(){document.getElementById('gamePage').style.display='none';}
 function doPredict(){
-let now = new Date();
-now.setMinutes(now.getMinutes() + 3);
+const btn=document.getElementById('btnPred');
+const loading=document.getElementById('loading');
+const res=document.getElementById('res');
+btn.disabled=true;btn.style.opacity="0.5";
+res.style.display='none';
+loading.style.display='block';
+setTimeout(()=>{
+let now=new Date();now.setMinutes(now.getMinutes()+3);
 let m=(Math.random()*5+1.10).toFixed(2);
 let a=(m*0.68).toFixed(2);
 let h=now.getHours()+'h'+String(now.getMinutes()).padStart(2,'0');
@@ -64,7 +75,10 @@ document.getElementById('rMult').innerText='x'+m;
 document.getElementById('rAss').innerText='x'+a;
 document.getElementById('rHeure').innerText=h;
 document.getElementById('rConf').innerText=c+'%';
-document.getElementById('res').style.display='block';
+loading.style.display='none';
+res.style.display='block';
+btn.disabled=false;btn.style.opacity="1";
+},2500);
 }
 </script>
 </body></html>
