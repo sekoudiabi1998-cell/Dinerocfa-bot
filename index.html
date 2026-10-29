@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DINERO CFA Predictor</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+body{background:#0f0f0f;color:white;font-family:Arial;text-align:center;padding:20px;margin:0}
+.card{background:#1e1e1e;border-radius:20px;padding:20px;margin-top:20px;border:2px solid #ff7a00}
+h1{color:#ff7a00}
+.btn{background:#ff7a00;color:white;padding:15px 30px;border-radius:12px;border:none;font-size:18px;font-weight:bold;width:100%;margin-top:15px}
+.cote{font-size:48px;color:#00ff88;font-weight:bold;margin:10px}
+.timer{font-size:24px;color:#ff7a00}
+</style>
+</head>
+<body>
+<h1>✈️ DINERO06 PREDICTOR</h1>
+<div class="card">
+<p>🚀 SIGNAL AVIATOR LIVE</p>
+<div class="timer" id="heure">Heure: --:--:--</div>
+<div class="cote" id="cote">x5.64</div>
+<p>Mise: 1000F<br>Cashout auto à <span id="cote2">x5.64</span></p>
+<button class="btn" onclick="newSignal()">🎯 NOUVEAU SIGNAL</button>
+<p style="margin-top:20px;font-size:12px;color:#888">Code: DINERO06 - 1WIN officiel</p>
+</div>
+<script>
+let tg = window.Telegram.WebApp; tg.expand();
+function newSignal(){
+  let cote = (Math.random()*6 + 2).toFixed(2);
+  let now = new Date(); now.setMinutes(now.getMinutes()+3);
+  document.getElementById('cote').innerText='x'+cote;
+  document.getElementById('cote2').innerText='x'+cote;
+  document.getElementById('heure').innerText='Heure: '+now.toLocaleTimeString();
+  tg.HapticFeedback.notificationOccurred('success');
+}
+newSignal();
+setInterval(()=>{document.getElementById('heure').innerText='Heure: '+new Date().toLocaleTimeString()},1000);
+</script>
+</body>
+</html>
