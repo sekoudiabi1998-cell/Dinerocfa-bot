@@ -7,8 +7,8 @@ bot = telebot.TeleBot(TOKEN)
 LIEN = "https://1win.ci/betting?p=unoe&sharebet=DINERO06"
 CODE = "DINERO06"
 # Mets ton propre ID Telegram ici pour recevoir les demandes - tape /myid sur @userinfobot
-ADMIN_ID = 123456789 # REMPLACE PAR TON ID
-users_verifies = {}
+ADMIN_ID = 6312211592 # REMPLACE PAR TON ID
+users_verifies = {6312211592: "ADMIN"}
 pending = {}
 
 app = Flask(__name__)
