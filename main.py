@@ -1,3 +1,53 @@
+# Ajoute ça en haut de ton main.py
+utilisateurs_verifies = {}  # on stocke qui a envoyé son ID
+
+@bot.message_handler(func=lambda m: m.text == "🏆 ACCÉDER AUX PRÉDICTIONS")
+def acces_predictions(message):
+    user_id = message.chat.id
+    if user_id in utilisateurs_verifies:
+        # Il a déjà envoyé son ID, on lui donne les prédictions
+        bot.send_message(user_id, "🏆 Voilà tes prédictions du jour !\n\n⚽️ Match: ...\nCote: ...")
+    else:
+        # Il n'a pas encore prouvé son inscription
+        markup = types.InlineKeyboardMarkup()
+        markup.add(types.InlineKeyboardButton("🎰 S'inscrire avec DINERO06", url="https://1win.ci/betting?p=unoe&sharebet=DINERO06"))
+        bot.send_message(
+            user_id,
+            "🔒 ACCÈS BLOQUÉ\n\n"
+            "Pour débloquer les prédictions, tu dois :\n"
+            f"1️⃣ T'inscrire avec le code {CODE_PROMO}\n"
+            "2️⃣ Déposer minimum 3000 FCFA\n"
+            "3️⃣ Envoyer ton ID 1Win ici (ex: 12345678)\n\n"
+            "Envoie ton ID maintenant 👇",
+            reply_markup=markup
+        )
+
+@bot.message_handler(func=lambda m: m.text.isdigit() and len(m.text) >= 6)
+def verifier_id(message):
+    id_1win = message.text
+    user_id = message.chat.id
+    
+    bot.send_message(user_id, f"⏳ Vérification de l'ID {id_1win} en cours...\nJe vérifie si tu as bien utilisé {CODE_PROMO} et déposé 3000F.")
+
+    # Simulation de 2 secondes
+    import time
+    time.sleep(2)
+    
+    utilisateurs_verifies[user_id] = id_1win
+    
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton("🏆 ACCÉDER AUX PRÉDICTIONS MAINTENANT", callback_data="predictions"))
+    
+    bot.send_message(
+        user_id,
+        f"✅ ID {id_1win} enregistré !\n\n"
+        "Je vérifie ton dépôt dans mon tableau partenaire 1Win.\n"
+        "Si ton dépôt de 3000F avec le code DINERO06 est OK, l'accès sera débloqué dans quelques minutes.\n\n"
+        "Clique ci-dessous pour réessayer :",
+        reply_markup=markup
+    )
+    # TOI, tu vas recevoir son ID sur Telegram et tu vérifies dans ton app 1Win Partners
+    print(f"NOUVEL ID À VÉRIFIER : {id_1win} de l'utilisateur {user_id}")
 import os
 import telebot
 from telebot import types
