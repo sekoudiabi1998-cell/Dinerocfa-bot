@@ -1,8 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
-BOT_TOKEN = "METS_TON_TOKEN"
-WEBAPP_URL = "https://ton-render.onrender.com"
+BOT_TOKEN = "9260749069:AAGfHUXEXVdKm5Rpr1-RWG2eh5_8_HUciXo"
+WEBAPP_URL = "https://dinerocfa-bot.onrender.com"
 PROMO = "DINERO06"
 
 user_step = {}
